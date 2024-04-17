@@ -2,6 +2,7 @@
   "name": "my-app",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -9,7 +10,9 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@sugar-ai/copilot-one-js": "file:../../sugarcane-ai/sugarcane-ai/sdks/js",
+    "@sugar-ai/abcd": "^0.0.22",
+    "@sugar-ai/copilot-one-js": "0.0.5",
+    "form-data": "^4.0.0",
     "next": "14.2.1",
     "react": "^18",
     "react-dom": "^18"
