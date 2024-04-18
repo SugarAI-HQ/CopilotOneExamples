@@ -1,3 +1,6 @@
+"use client";
+import dynamic from "next/dynamic";
+import { NextPage } from "next";
 import "../app/globals.css";
 import React, { useState } from "react";
 import { MdAdd, MdDelete } from "react-icons/md";
@@ -215,15 +218,13 @@ const TodoApp = () => {
         onClose={handleSettingsToggle}
         highlightedSetting={highlightedSetting}
       />
-      <CopilotProvider config={copilotConfig}>
-        <VoiceToSkillComponent
-          id={"preview"}
-          promptTemplate={copilotPackage}
-          position={"bottom-right"}
-          promptVariables={{ "#AGENT_NAME": "Tudy" }}
-          buttonStyle={{ backgroundColor: "#39f" }}
-        ></VoiceToSkillComponent>
-      </CopilotProvider>
+      <VoiceToSkillComponent
+        id={"preview"}
+        promptTemplate={copilotPackage}
+        position={"bottom-right"}
+        promptVariables={{ "#AGENT_NAME": "Tudy" }}
+        buttonStyle={{ backgroundColor: "#39f" }}
+      ></VoiceToSkillComponent>
 
       <h1 className="text-3xl font-bold mb-4">
         Todos ({todos.length}){" "}
@@ -400,8 +401,14 @@ const SettingsPopup: React.FC<SettingsType> = ({
   );
 };
 
-const App = () => {
-  return <TodoApp />;
+const Todo: NextPage = () => {
+  return (
+    <CopilotProvider config={copilotConfig as CopilotConfigType}>
+      <TodoApp />
+    </CopilotProvider>
+  );
 };
 
-export default App;
+export default dynamic(() => Promise.resolve(Todo), {
+  ssr: false,
+});
