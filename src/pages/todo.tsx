@@ -1,5 +1,4 @@
 "use client";
-import dynamic from "next/dynamic";
 import { NextPage } from "next";
 import "../app/globals.css";
 import React, { useState } from "react";
@@ -408,7 +407,4 @@ const Todo: NextPage = () => {
     </CopilotProvider>
   );
 };
-
-export default dynamic(() => Promise.resolve(Todo), {
-  ssr: false,
-});
+export default Todo;
