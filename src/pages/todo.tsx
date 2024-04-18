@@ -23,7 +23,7 @@ enum recurringType {
   yearly,
 }
 
-const copilotPackage = "demo/copilotexample/todoexample/0.0.1";
+const copilotPackage = "hi/copilotexample/todoexample/0.0.1";
 
 const copilotConfig: CopilotConfigType = {
   copilotId: "da82abb5-cf74-448b-b94d-7e17245cc5d9",
