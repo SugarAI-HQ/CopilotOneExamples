@@ -1,13 +1,15 @@
-"use client";
+import "../app/globals.css";
 import React, { useState } from "react";
+import { MdAdd, MdDelete } from "react-icons/md";
+import { FiSettings } from "react-icons/fi";
 
 import {
   useCopilot,
   VoiceToSkillComponent,
   CopilotConfigType,
   CopilotProvider,
-} from "@sugar-ai/abcd";
-import { AppProps } from "next/app";
+} from "@sugar-ai/copilot-one-js";
+import { FilterType, SettingsType, TodoSchemaType } from "./todoSchema";
 
 enum recurringType {
   none,
@@ -18,20 +20,17 @@ enum recurringType {
   yearly,
 }
 
+const copilotPackage = "pulkit21/copilot/onboard-default/0.0.1";
+
 const copilotConfig: CopilotConfigType = {
   copilotId: "da82abb5-cf74-448b-b94d-7e17245cc5d9",
   server: {
-    endpoint: "http://localhost:3000/api",
-    // endpoint: "https://staging.sugarcaneai.dev/api",
-    token: "pk-ZSl1A2XLH8AGY5JqkLDDX75BwZmKR7wCYL22Rcr8vVURvYVZ",
-    // headers: {
-    //   // optional headers, to be sent with each api request
-    //   'X-COPILOT-ID': '1234',
-    // },
+    endpoint: "http://api.sugarcaneai.dev/api",
+    token: "pk-9QN0BV14gdTJz1jhTk1AMUXHgoxG35Q4Gfb1nZ51TtzckmN4",
   },
 
   ai: {
-    defaultPromptTemmplate: "pulkit.ag02/recipiess/recipie/0.0.1",
+    defaultPromptTemplate: copilotPackage,
     defaultPromptVariables: {
       "#AGENT_NAME": "Tudy",
     },
@@ -40,8 +39,8 @@ const copilotConfig: CopilotConfigType = {
   },
   style: {
     container: {
-      position: "top-right",
-      marging: "",
+      position: "bottom-right",
+      margin: "",
     },
     theme: {
       primaryColor: "",
@@ -61,27 +60,17 @@ const copilotConfig: CopilotConfigType = {
 };
 
 const TodoApp = () => {
-  // const { useStateCopilot, registerSkill, unregisterSkill } = useCopilot();
+  const { useStateCopilot, registerSkill, unregisterSkill } = useCopilot();
 
-  // const [todos, setTodos] = useStateCopilot([], "todoApp", "todos");
-  const [todos, setTodos] = useState([]);
+  const [todos, setTodos] = useStateCopilot([], "todoApp", "todos");
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
-  const [highlightedSetting, setHighlightedSetting] = useState();
-  // const [todos, setTodos] =s React.useState([]);
+  const [highlightedSetting, setHighlightedSetting] = useState("");
   const [input, setInput] = useState("");
-  const [filter, setFilter] = useState("all");
+  const [filter, setFilter] = useState<FilterType>("all");
 
-  // const addTodo = (task, isRecurring: boolean, recurringType: recurringType) => {
-  const addTodo = (task) => {
-    // console.log(`isRecurring: ${isRecurring}`);
-    // console.log(`recurringType: ${recurringType}`);
+  const addTodo = (task: string) => {
+    // @ts-ignore
     setTodos((ts) => [...ts, { task, id: ts.length + 1, completed: false }]);
-  };
-
-  const registerSkill = (skillName, skillDescription, skillFunction) => {
-    // console.log(`registering skill: ${skillName}`);
-    // console.log(`registering skill: ${skillDescription}`);
-    // console.log(`registering skill: ${skillFunction}`);
   };
 
   registerSkill(
@@ -96,27 +85,16 @@ const TodoApp = () => {
           description: "Task description",
           required: true,
         },
-        // {
-        //   name: 'isRecurring',
-        //   type: 'boolean',
-        //   description: 'Is the task of recurring nature',
-        //   required: true,
-        // },
-        // {
-        //   name: 'recurringType',
-        //   type: 'string',
-        //   enum: Object.values(recurringType).filter((value) => typeof value === 'string') as string[],
-        //   description: 'Nature of recurring task - hourly, daily, weekly etc',
-        //   required: true,
-        // },
       ],
     },
     addTodo
   );
 
-  const deleteTodo = (task) => {
+  const deleteTodo = (task: string) => {
     setTodos(
-      todos.filter((todo) => todo.task.toLowerCase() !== task.toLowerCase())
+      (todos as any).filter(
+        (todo: TodoSchemaType) => todo.task.toLowerCase() !== task.toLowerCase()
+      )
     );
   };
 
@@ -137,19 +115,9 @@ const TodoApp = () => {
     deleteTodo
   );
 
-  // const markTodoAsDone = (task) => {
-  //   setTodos(
-  //     todos.map((todo) => {
-  //       if (todo.task.toLowerCase() === task.toLowerCase()) {
-  //         return { ...todo, completed: true };
-  //       }
-  //       return todo;
-  //     }),
-  //   );
-  // };
-  const markTodoAsDone = (task) => {
+  const markTodoAsDone = (task: string) => {
     setTodos(
-      todos.map((todo) => {
+      (todos as any).map((todo: TodoSchemaType) => {
         if (todo.task.toLowerCase() === task.toLowerCase()) {
           return { ...todo, completed: !todo.completed }; // Toggle completed status
         }
@@ -157,11 +125,10 @@ const TodoApp = () => {
       })
     );
   };
-  // registerSkill(markTodoAsDone);
 
   const markTodoAsDoneById = function nameFunc(todoId: number) {
     setTodos(
-      todos.map((todo) => {
+      (todos as any).map((todo: TodoSchemaType) => {
         if (todo.id == todoId) {
           return { ...todo, completed: true };
         }
@@ -186,18 +153,23 @@ const TodoApp = () => {
     markTodoAsDoneById
   );
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    // @ts-ignore
     addTodo(input, false, recurringType.none);
     setInput("");
   };
 
   const filterTodos = () => {
+    if (!Array.isArray(todos)) {
+      return [];
+    }
+
     switch (filter) {
       case "remaining":
-        return todos.filter((todo) => !todo.completed);
+        return todos.filter((todo: TodoSchemaType) => !todo.completed);
       case "done":
-        return todos.filter((todo) => todo.completed);
+        return todos.filter((todo: TodoSchemaType) => todo.completed);
       default:
         return todos;
     }
@@ -238,7 +210,6 @@ const TodoApp = () => {
 
   return (
     <div className="container mx-auto py-8">
-      {/* <TodoSettings /> */}
       <SettingsPopup
         isOpen={isSettingsOpen}
         onClose={handleSettingsToggle}
@@ -246,9 +217,9 @@ const TodoApp = () => {
       />
       <CopilotProvider config={copilotConfig}>
         <VoiceToSkillComponent
-          id={"1"}
-          promptTemplate={"hi/skills/todo-skill/0.0.5"}
-          position={"top-right"}
+          id={"preview"}
+          promptTemplate={copilotPackage}
+          position={"bottom-right"}
           promptVariables={{ "#AGENT_NAME": "Tudy" }}
           buttonStyle={{ backgroundColor: "#39f" }}
         ></VoiceToSkillComponent>
@@ -257,7 +228,7 @@ const TodoApp = () => {
       <h1 className="text-3xl font-bold mb-4">
         Todos ({todos.length}){" "}
         <button onClick={handleSettingsToggle} className="">
-          {/* <FiSettings className="h-5 w-5 text-gray-500 hover:text-gray-700" />{" "} */}
+          <FiSettings className="h-5 w-5 text-gray-500 hover:text-gray-700" />{" "}
           {/* Settings icon */}
         </button>
       </h1>
@@ -274,7 +245,7 @@ const TodoApp = () => {
           type="submit"
           className="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-4 py-2 rounded-r focus:outline-none focus:shadow-outline flex items-center"
         >
-          {/* <MdAdd className="mr-2" /> */}
+          <MdAdd className="mr-2" />
         </button>
       </form>
 
@@ -335,9 +306,11 @@ const TodoApp = () => {
   );
 };
 
-// export default TodoApp;
-
-const SettingsPopup = ({ isOpen, onClose, highlightedSetting }) => {
+const SettingsPopup: React.FC<SettingsType> = ({
+  isOpen,
+  onClose,
+  highlightedSetting,
+}) => {
   return (
     <div
       className={`fixed top-0 left-0 w-full h-full flex items-center justify-center ${
@@ -421,7 +394,6 @@ const SettingsPopup = ({ isOpen, onClose, highlightedSetting }) => {
               <span className="slider round"></span>
             </label>
           </li>
-          {/* Add more setting options as needed */}
         </ul>
       </div>
     </div>
@@ -429,11 +401,7 @@ const SettingsPopup = ({ isOpen, onClose, highlightedSetting }) => {
 };
 
 const App = () => {
-  return (
-    <TodoApp />
-    // <CopilotProvider config={copilotConfig as CopilotConfigType}>
-    // </CopilotProvider>
-  );
+  return <TodoApp />;
 };
 
 export default App;

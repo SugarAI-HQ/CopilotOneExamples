@@ -10,12 +10,13 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@sugar-ai/abcd": "^0.0.22",
-    "@sugar-ai/copilot-one-js": "0.0.5",
+    "@sugar-ai/copilot-one-js": "0.0.10",
     "form-data": "^4.0.0",
     "next": "14.2.1",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "react-icons": "^5.1.0",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
     "@types/node": "^20",
