@@ -28,7 +28,7 @@ const copilotPackage = "demo/copilotexample/todoexample/0.0.1";
 const copilotConfig: CopilotConfigType = {
   copilotId: "da82abb5-cf74-448b-b94d-7e17245cc5d9",
   server: {
-    endpoint: "http://api.sugarcaneai.dev/api",
+    endpoint: "https://play.sugarcaneai.dev/api",
     token: "pk-m0j6E8CfMkedk0orAk0gXyALpOZULs3rSiYulaPFXd2rPlin",
   },
 
