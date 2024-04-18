@@ -12,7 +12,7 @@ import {
   CopilotConfigType,
   CopilotProvider,
 } from "@sugar-ai/copilot-one-js";
-import { FilterType, SettingsType, TodoSchemaType } from "./todoSchema";
+import { FilterType, SettingsType, TodoSchemaType } from "../schema/todoSchema";
 
 enum recurringType {
   none,
