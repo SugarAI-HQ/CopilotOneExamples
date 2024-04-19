@@ -1,17 +1,18 @@
 "use client";
 import { NextPage } from "next";
 import "../app/globals.css";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { MdAdd, MdDelete } from "react-icons/md";
 import { FiSettings } from "react-icons/fi";
 
 import {
   useCopilot,
-  VoiceAssistant,
   CopilotConfigType,
   CopilotProvider,
+  VoiceAssistant,
 } from "@sugar-ai/copilot-one-js";
 import { FilterType, SettingsType, TodoSchemaType } from "../schema/todoSchema";
+import { getPreviewConfig } from "@/helpers/copilot";
 
 enum recurringType {
   none,
@@ -24,7 +25,7 @@ enum recurringType {
 
 const copilotPackage = "sugar/copilotexample/todoexample/0.0.1";
 
-const copilotConfig: CopilotConfigType = {
+let copilotConfig: CopilotConfigType = {
   copilotId: "da82abb5-cf74-448b-b94d-7e17245cc5d9",
   server: {
     endpoint: "https://play.sugarcaneai.dev/api",
@@ -36,36 +37,13 @@ const copilotConfig: CopilotConfigType = {
     defaultPromptVariables: {
       "#AGENT_NAME": "Tudy",
     },
+    welcomeMessage: "Hello, I am Tudy. What task can I help you with today?",
     successResponse: "Task Done",
     failureResponse: "I am not able to do this",
-    welcomeMessage: "Tap & Speak: Let AI Guide Your Journey!",
   },
-  //@ts-ignore
   style: {
-    container: {
-      position: "bottom-right",
-      margin: "",
-    },
-    theme: {
-      primaryColor: "#3b83f6",
-      secondaryColor: "#FFFFFF",
-      fontFamily: "",
-      fontSize: "",
-      textColor: "",
-    },
-    // voiceButton: {
-    //   bgColor: "",
-    //   color: "",
-    //   width: "",
-    //   height: "",
-    //   iconSize: "",
-    // },
     keyboardButton: {
-      position: "left",
-      bgColor: "",
-      color: "",
-      placeholder: "",
-      iconSize: "",
+      placeholder: "How can I help ?",
     },
   },
 };
@@ -229,6 +207,20 @@ const TodoApp = () => {
       <VoiceAssistant
         id={"preview"}
         promptTemplate={copilotPackage}
+        position={"bottom-center"}
+        // promptVariables={{ "#AGENT_NAME": "Tudy" }}
+        // voiceButtonStyle={{ backgroundColor: "#39f" }}
+      ></VoiceAssistant>
+      {/* <VoiceAssistant
+        id={"preview"}
+        promptTemplate={copilotPackage}
+        position={"top-center"}
+        // promptVariables={{ "#AGENT_NAME": "Tudy" }}
+        // voiceButtonStyle={{ backgroundColor: "#39f" }}
+      ></VoiceAssistant> */}
+      {/* <VoiceAssistant
+        id={"preview"}
+        promptTemplate={copilotPackage}
         position={"bottom-right"}
         promptVariables={{ "#AGENT_NAME": "Tudy" }}
         // buttonStyle={{ backgroundColor: "#39f" }}
@@ -241,7 +233,6 @@ const TodoApp = () => {
           {/* Settings icon */}
         </button>
       </h1>
-
       <form onSubmit={handleSubmit} className="mb-4 flex">
         <input
           type="text"
@@ -257,7 +248,6 @@ const TodoApp = () => {
           <MdAdd className="mr-2" />
         </button>
       </form>
-
       <div className="flex mb-4">
         <button
           onClick={() => setFilter("all")}
@@ -284,7 +274,6 @@ const TodoApp = () => {
           Done
         </button>
       </div>
-
       <ul>
         {filterTodos().map((todo, index) => (
           <li
@@ -410,8 +399,19 @@ const SettingsPopup: React.FC<SettingsType> = ({
 };
 
 const Todo: NextPage = () => {
+  const [config, setConfig] = useState(copilotConfig);
+
+  useEffect(() => {
+    const encodedData = window.location.search.split("=")[1];
+    if (typeof encodedData !== "undefined" && encodedData) {
+      const previewConfig = JSON.parse(atob(encodedData));
+      const finalConfig = { ...config, ...previewConfig };
+      setConfig(finalConfig);
+    }
+  }, []);
+
   return (
-    <CopilotProvider config={copilotConfig as CopilotConfigType}>
+    <CopilotProvider config={config as CopilotConfigType}>
       <TodoApp />
     </CopilotProvider>
   );
