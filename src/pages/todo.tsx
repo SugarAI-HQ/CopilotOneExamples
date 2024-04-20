@@ -25,6 +25,7 @@ enum recurringType {
 
 const copilotPackage = "sugar/copilotexample/todoexample/0.0.1";
 
+// @ts-ignore
 let copilotConfig: CopilotConfigType = {
   copilotId: "da82abb5-cf74-448b-b94d-7e17245cc5d9",
   server: {
@@ -40,11 +41,6 @@ let copilotConfig: CopilotConfigType = {
     welcomeMessage: "Hello, I am Tudy. What task can I help you with today?",
     successResponse: "Task Done",
     failureResponse: "I am not able to do this",
-  },
-  style: {
-    keyboardButton: {
-      placeholder: "How can I help ?",
-    },
   },
 };
 
