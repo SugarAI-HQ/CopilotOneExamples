@@ -38,7 +38,8 @@ let copilotConfig: CopilotConfigType = {
     defaultPromptVariables: {
       "#AGENT_NAME": "Tudy",
     },
-    welcomeMessage: "Hello, I am Tudy. What task can I help you with today?",
+    welcomeMessage:
+      "Hello, I am Tudy. I am here to help you use this todo App. What would you like to do?",
     successResponse: "Task Done",
     failureResponse: "I am not able to do this",
   },
