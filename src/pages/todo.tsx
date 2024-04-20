@@ -7,7 +7,7 @@ import { FiSettings } from "react-icons/fi";
 
 import {
   useCopilot,
-  VoiceToSkillComponent,
+  VoiceAssistant,
   CopilotConfigType,
   CopilotProvider,
 } from "@sugar-ai/copilot-one-js";
@@ -38,33 +38,42 @@ const copilotConfig: CopilotConfigType = {
     },
     successResponse: "Task Done",
     failureResponse: "I am not able to do this",
+    welcomeMessage: "Tap & Speak: Let AI Guide Your Journey!",
   },
+  //@ts-ignore
   style: {
     container: {
       position: "bottom-right",
       margin: "",
     },
     theme: {
-      primaryColor: "",
-      secondaryColor: "",
+      primaryColor: "#3b83f6",
+      secondaryColor: "#FFFFFF",
       fontFamily: "",
       fontSize: "",
       textColor: "",
     },
-    button: {
+    // voiceButton: {
+    //   bgColor: "",
+    //   color: "",
+    //   width: "",
+    //   height: "",
+    //   iconSize: "",
+    // },
+    keyboardButton: {
+      position: "left",
       bgColor: "",
       color: "",
-      width: "",
-      height: "",
+      placeholder: "",
       iconSize: "",
     },
   },
 };
 
 const TodoApp = () => {
-  const { useStateCopilot, registerSkill, unregisterSkill } = useCopilot();
+  const { useStateEmbedding, registerAction, unregisterAction } = useCopilot();
 
-  const [todos, setTodos] = useStateCopilot([], "todoApp", "todos");
+  const [todos, setTodos] = useStateEmbedding([], "todoApp", "todos");
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [highlightedSetting, setHighlightedSetting] = useState("");
   const [input, setInput] = useState("");
@@ -75,7 +84,7 @@ const TodoApp = () => {
     setTodos((ts) => [...ts, { task, id: ts.length + 1, completed: false }]);
   };
 
-  registerSkill(
+  registerAction(
     "addTodo",
     {
       name: "addTodo",
@@ -100,7 +109,7 @@ const TodoApp = () => {
     );
   };
 
-  registerSkill(
+  registerAction(
     "deleteTodo",
     {
       name: "deleteTodo",
@@ -138,7 +147,7 @@ const TodoApp = () => {
       })
     );
   };
-  registerSkill(
+  registerAction(
     "markTodoAsDoneById",
     {
       name: "markTodoAsDoneById",
@@ -186,7 +195,7 @@ const TodoApp = () => {
     setHighlightedSetting(settingName);
   };
 
-  registerSkill(
+  registerAction(
     "manageSettings",
     {
       name: "manageSettings",
@@ -217,13 +226,13 @@ const TodoApp = () => {
         onClose={handleSettingsToggle}
         highlightedSetting={highlightedSetting}
       />
-      <VoiceToSkillComponent
+      <VoiceAssistant
         id={"preview"}
         promptTemplate={copilotPackage}
         position={"bottom-right"}
         promptVariables={{ "#AGENT_NAME": "Tudy" }}
-        buttonStyle={{ backgroundColor: "#39f" }}
-      ></VoiceToSkillComponent>
+        // buttonStyle={{ backgroundColor: "#39f" }}
+      ></VoiceAssistant>
 
       <h1 className="text-3xl font-bold mb-4">
         Todos ({todos.length}){" "}
