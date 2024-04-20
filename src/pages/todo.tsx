@@ -211,20 +211,6 @@ const TodoApp = () => {
         // promptVariables={{ "#AGENT_NAME": "Tudy" }}
         // voiceButtonStyle={{ backgroundColor: "#39f" }}
       ></VoiceAssistant>
-      {/* <VoiceAssistant
-        id={"preview"}
-        promptTemplate={copilotPackage}
-        position={"top-center"}
-        // promptVariables={{ "#AGENT_NAME": "Tudy" }}
-        // voiceButtonStyle={{ backgroundColor: "#39f" }}
-      ></VoiceAssistant> */}
-      {/* <VoiceAssistant
-        id={"preview"}
-        promptTemplate={copilotPackage}
-        position={"bottom-right"}
-        promptVariables={{ "#AGENT_NAME": "Tudy" }}
-        // buttonStyle={{ backgroundColor: "#39f" }}
-      ></VoiceAssistant>
 
       <h1 className="text-3xl font-bold mb-4">
         Todos ({todos.length}){" "}
