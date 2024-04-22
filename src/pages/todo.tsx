@@ -12,7 +12,8 @@ import {
   VoiceAssistant,
 } from "@sugar-ai/copilot-one-js";
 import { FilterType, SettingsType, TodoSchemaType } from "../schema/todoSchema";
-import { getPreviewConfig } from "@/helpers/copilot";
+import ThemeSwitcher from "@/ThemeSwitcher";
+import { useTheme } from "next-themes";
 
 enum recurringType {
   none,
@@ -43,6 +44,15 @@ let copilotConfig: CopilotConfigType = {
     successResponse: "Task Done",
     failureResponse: "I am not able to do this",
   },
+  style: {
+    container: { position: "bottom-center" },
+    theme: { primaryColor: "#3b83f6" },
+    keyboardButton: {},
+    toolTip: {
+      disabled: false,
+    },
+    voiceButton: {},
+  },
 };
 
 const TodoApp = () => {
@@ -53,6 +63,7 @@ const TodoApp = () => {
   const [highlightedSetting, setHighlightedSetting] = useState("");
   const [input, setInput] = useState("");
   const [filter, setFilter] = useState<FilterType>("all");
+  const { systemTheme, theme, setTheme } = useTheme();
 
   const addTodo = (task: string) => {
     // @ts-ignore
@@ -168,6 +179,10 @@ const TodoApp = () => {
   const manageSettings = (settingName: string) => {
     setIsSettingsOpen(true);
     setHighlightedSetting(settingName);
+    if (settingName === "dark_mode") {
+      const currentTheme = theme === "system" ? systemTheme : theme;
+      setTheme(currentTheme === "dark" ? "light" : "dark");
+    }
   };
 
   registerAction(
@@ -196,6 +211,7 @@ const TodoApp = () => {
 
   return (
     <div className="container mx-auto p-8">
+      <ThemeSwitcher />
       <SettingsPopup
         isOpen={isSettingsOpen}
         onClose={handleSettingsToggle}
