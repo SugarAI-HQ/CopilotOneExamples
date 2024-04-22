@@ -1,3 +1,4 @@
+import { resume } from "@/helpers/data";
 import {
   CopilotConfigType,
   CopilotProvider,
@@ -7,7 +8,7 @@ import {
 import { NextPage } from "next";
 import React, { useEffect, useState } from "react";
 
-const copilotPackage = "sugar/copilotexample/todoexample/0.0.1";
+const copilotPackage = "sugar/copilotexample/file-to-action/0.0.2";
 
 // @ts-ignore
 let copilotConfig: CopilotConfigType = {
@@ -17,16 +18,15 @@ let copilotConfig: CopilotConfigType = {
     token: "pk-m0j6E8CfMkedk0orAk0gXyALpOZULs3rSiYulaPFXd2rPlin",
   },
 
-  // ai: {
-  //   defaultPromptTemplate: copilotPackage,
-  //   defaultPromptVariables: {
-  //     "#AGENT_NAME": "Tudy",
-  //   },
-  //   welcomeMessage:
-  //     "Hello, I am Tudy. I am here to help you use this todo App. What would you like to do?",
-  //   successResponse: "Task Done",
-  //   failureResponse: "I am not able to do this",
-  // },
+  ai: {
+    defaultPromptTemplate: copilotPackage,
+    // defaultPromptVariables: {
+    // },
+    welcomeMessage:
+      "Hello, I am Foundy. I am here to help you use filling Founder Profile?",
+    successResponse: "Task Done",
+    failureResponse: "I am not able to do this",
+  },
 };
 
 const FormApp = () => {
@@ -129,18 +129,74 @@ const FormApp = () => {
     addEducation
   );
 
-  const addWork = (e: any) => {
+  const addWork = (
+    title: string,
+    company: string,
+    startDate: string,
+    endDate: string,
+    currentlyHere: boolean,
+    description: string
+  ) => {
     const newFormData = { ...formData };
     newFormData.workHistory.push({
-      title: "",
-      company: "",
-      startDate: "",
-      endDate: "",
-      currentlyHere: false,
-      description: "",
+      title: title,
+      company: company,
+      startDate: startDate,
+      endDate: endDate,
+      currentlyHere: currentlyHere,
+      description: description,
     });
+
     setFormData(newFormData);
   };
+
+  registerAction(
+    "addJobDeails",
+    {
+      name: "addJobDeails",
+      description: "Add Job details",
+      parameters: [
+        {
+          name: "title",
+          type: "string",
+          description: "Job Title at Company",
+          required: true,
+        },
+        {
+          name: "company",
+          type: "string",
+          description: "Name of the company",
+          required: true,
+        },
+        {
+          name: "startDate",
+          type: "string",
+          description: "Start date of Job",
+          required: true,
+        },
+        {
+          name: "endDate",
+          type: "string",
+          description: "End Date of Job",
+          required: true,
+        },
+        {
+          name: "currentlyHere",
+          type: "boolean",
+          description: "Still contunining in the job ?",
+          required: true,
+        },
+        {
+          name: "description",
+          type: "string",
+          description:
+            "Job descrption, things you have done and are responsible here",
+          required: true,
+        },
+      ],
+    },
+    addWork
+  );
 
   const removeItem = (index, type) => {
     const newFormData = { ...formData };
@@ -286,7 +342,7 @@ const FormApp = () => {
         id={"preview"}
         promptTemplate={copilotPackage}
         position={"bottom-center"}
-        // promptVariables={{ "#AGENT_NAME": "Tudy" }}
+        promptVariables={{ "#AGENT_NAME": "Sugar", "#RESUME": resume }}
         // voiceButtonStyle={{ backgroundColor: "#39f" }}
       ></VoiceAssistant>
 
