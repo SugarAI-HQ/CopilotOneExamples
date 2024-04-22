@@ -43,14 +43,14 @@ const FormApp = () => {
       // },
     ],
     workHistory: [
-      // {
-      //   title: "",
-      //   company: "",
-      //   startDate: "",
-      //   endDate: "",
-      //   currentlyHere: false,
-      //   description: "",
-      // },
+      {
+        title: "",
+        company: "",
+        startDate: "",
+        endDate: "",
+        currentlyHere: false,
+        description: "",
+      },
     ],
   });
 
@@ -155,11 +155,11 @@ const FormApp = () => {
   function FileToAction() {}
 
   return (
-    <div className="container mx-auto p-8">
+    <div className="container mx-auto p-8 dark:bg-gray-800">
       <div className="mb-8">
         <div className="space-y-12">
           <div className="border-b border-gray-900/10 pb-12">
-            <h2 className="text-base font-semibold leading-7 text-gray-900">
+            <h2 className="text-base font-semibold leading-7 text-gray-900 dark:text-white">
               Education History
             </h2>
           </div>
@@ -173,7 +173,7 @@ const FormApp = () => {
             <div className="sm:col-span-3">
               <label
                 htmlFor="schoolName"
-                className="block text-sm font-medium leading-6 text-gray-900"
+                className="block text-sm font-medium leading-6 text-gray-900 dark:text-white "
               >
                 School Name
               </label>
@@ -184,14 +184,14 @@ const FormApp = () => {
                   value={item.schoolName}
                   onChange={(e) => handleInputChange(index, e, "education")}
                   placeholder="School Name (Required)"
-                  className="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-600 placeholder:text-gray-400 dark:placeholder-gray-500 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 dark:bg-gray-700"
                 />
               </div>
             </div>
             <div className="sm:col-span-3">
               <label
                 htmlFor="degreeName"
-                className="block text-sm font-medium leading-6 text-gray-900"
+                className="block text-sm font-medium leading-6 text-gray-900 dark:text-white "
               >
                 Degree Name
               </label>
@@ -202,14 +202,14 @@ const FormApp = () => {
                   value={item.degreeName}
                   onChange={(e) => handleInputChange(index, e, "education")}
                   placeholder="Degree Name (Required)"
-                  className="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-600 placeholder:text-gray-400 dark:placeholder-gray-500 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 dark:bg-gray-700"
                 />
               </div>
             </div>
             <div className="sm:col-span-4">
               <label
                 htmlFor="fieldOfStudy"
-                className="block text-sm font-medium leading-6 text-gray-900"
+                className="block text-sm font-medium leading-6 text-gray-900 dark:text-white "
               >
                 Field of Study
               </label>
@@ -220,14 +220,14 @@ const FormApp = () => {
                   value={item.fieldOfStudy}
                   onChange={(e) => handleInputChange(index, e, "education")}
                   placeholder="Field of Study"
-                  className="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-600 placeholder:text-gray-400 dark:placeholder-gray-500 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 dark:bg-gray-700"
                 />
               </div>
             </div>
             <div className="sm:col-span-3">
               <label
                 htmlFor="startDate"
-                className="block text-sm font-medium leading-6 text-gray-900"
+                className="block text-sm font-medium leading-6 text-gray-900 dark:text-white "
               >
                 Start Date
               </label>
@@ -238,14 +238,14 @@ const FormApp = () => {
                   value={item.startDate}
                   onChange={(e) => handleInputChange(index, e, "education")}
                   placeholder="Start Date (Required)"
-                  className="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-600 placeholder:text-gray-400 dark:placeholder-gray-500 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 dark:bg-gray-700"
                 />
               </div>
             </div>
             <div className="sm:col-span-3">
               <label
                 htmlFor="endDate"
-                className="block text-sm font-medium leading-6 text-gray-900"
+                className="block text-sm font-medium leading-6 text-gray-900 dark:text-white "
               >
                 End Date
               </label>
@@ -256,7 +256,7 @@ const FormApp = () => {
                   value={item.endDate}
                   onChange={(e) => handleInputChange(index, e, "education")}
                   placeholder="End Date"
-                  className="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-600 placeholder:text-gray-400 dark:placeholder-gray-500 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 dark:bg-gray-700"
                 />
               </div>
             </div>
@@ -293,7 +293,7 @@ const FormApp = () => {
       <div className="mb-8">
         <div className="space-y-12">
           <div className="border-b border-gray-900/10 pb-12">
-            <h2 className="text-base font-semibold leading-7 text-gray-900">
+            <h2 className="text-base font-semibold leading-7 text-gray-900 dark:text-white">
               Work History
             </h2>
           </div>
@@ -306,7 +306,7 @@ const FormApp = () => {
             <div className="sm:col-span-3">
               <label
                 htmlFor="title"
-                className="block text-sm font-medium leading-6 text-gray-900"
+                className="block text-sm font-medium leading-6 text-gray-900 dark:text-white "
               >
                 Title
               </label>
@@ -317,14 +317,14 @@ const FormApp = () => {
                   value={item.title}
                   onChange={(e) => handleInputChange(index, e, "work")}
                   placeholder="Title (Required)"
-                  className="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-600 placeholder:text-gray-400 dark:placeholder-gray-500 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 dark:bg-gray-700"
                 />
               </div>
             </div>
             <div className="sm:col-span-3">
               <label
                 htmlFor="company"
-                className="block text-sm font-medium leading-6 text-gray-900"
+                className="block text-sm font-medium leading-6 text-gray-900 dark:text-white "
               >
                 Company
               </label>
@@ -335,14 +335,14 @@ const FormApp = () => {
                   value={item.company}
                   onChange={(e) => handleInputChange(index, e, "work")}
                   placeholder="Company (Required)"
-                  className="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-600 placeholder:text-gray-400 dark:placeholder-gray-500 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 dark:bg-gray-700"
                 />
               </div>
             </div>
             <div className="sm:col-span-3">
               <label
                 htmlFor="startDate"
-                className="block text-sm font-medium leading-6 text-gray-900"
+                className="block text-sm font-medium leading-6 text-gray-900 dark:text-white "
               >
                 Start Date
               </label>
@@ -353,14 +353,14 @@ const FormApp = () => {
                   value={item.startDate}
                   onChange={(e) => handleInputChange(index, e, "work")}
                   placeholder="Start Date (Required)"
-                  className="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-600 placeholder:text-gray-400 dark:placeholder-gray-500 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 dark:bg-gray-700"
                 />
               </div>
             </div>
             <div className="sm:col-span-3">
               <label
                 htmlFor="endDate"
-                className="block text-sm font-medium leading-6 text-gray-900"
+                className="block text-sm font-medium leading-6 text-gray-900 dark:text-white"
               >
                 End Date
               </label>
@@ -371,7 +371,7 @@ const FormApp = () => {
                   value={item.endDate}
                   onChange={(e) => handleInputChange(index, e, "work")}
                   placeholder="End Date"
-                  className="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-600 placeholder:text-gray-400 dark:placeholder-gray-500 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 dark:bg-gray-700"
                 />
               </div>
             </div>
@@ -389,7 +389,7 @@ const FormApp = () => {
                 <div className="text-sm leading-6">
                   <label
                     htmlFor="currentlyHere"
-                    className="font-medium text-gray-900"
+                    className="block text-sm font-medium leading-6 text-gray-900 dark:text-white"
                   >
                     Currently here
                   </label>
@@ -403,7 +403,7 @@ const FormApp = () => {
                   value={item.description}
                   onChange={(e) => handleInputChange(index, e, "work")}
                   placeholder="Description (Optional)"
-                  className="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-600 placeholder:text-gray-400 dark:placeholder-gray-500 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 dark:bg-gray-700"
                 />
               </div>
             </div>
@@ -432,7 +432,9 @@ const FormApp = () => {
       <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
         <div className="sm:col-span-1">
           <button className="px-4 py-2 mb-4 border flex gap-2 border-slate-200 rounded-lg text-slate-700 hover:border-slate-400 hover:text-slate-900 hover:shadow transition duration-150 text-lg">
-            <span className="pt-0.5">Fill from</span>
+            <span className="pt-0.5 block text-sm font-medium leading-6 text-gray-900 dark:text-white">
+              Fill from
+            </span>
             <img
               className="w-6 h-6"
               src="https://www.svgrepo.com/show/475661/linkedin-color.svg"
