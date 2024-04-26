@@ -1,4 +1,7 @@
 export const resume = `
+---------------------
+Work/Job History
+---------------------
 Volunteer primarily as React Native Developer in Sadhguru App team,
 - help improve core of the apps,
 - POCs for React Native Web, PWA, Native to HTML rendering,
@@ -32,9 +35,19 @@ India
 Internal migration from Whitehatjr to Byju Core Group, still on Whitehatjr Payrol
 Working in Assesment Vertical migrating projects from whitehatjr to byjus
 group.
+
+--------------
+
+Flipkart
+
+Head Enginnering for B2B Travel at Cleartrip
+February 2022 - July 2022 (6 months)
+India
+
+Resetup the team from scartch to build next generate B2B Travel Expereince.
 ---------------------
 
-WhiteHat Jr
+Byju Future School
 Director & Software Architect
 December 2020 - July 2022 (1 year 8 months)
 India
@@ -123,7 +136,8 @@ Worked On SHP (Samsung Handset Platform) / Bada OS based mobile.
 Worked with Mobile Prayer Module for Samsung Wave Series
 Also developed Bada Based Applicaitons
 
----------------------
+
+
 Motilal Nehru National Institute Of Technology
 Training & Placement Student Coordinator
 March 2009 - June 2010 (1 year 4 months)
@@ -132,7 +146,7 @@ Coordianted with Students and Companies for the recruitement process.
 
 
 ---------------------
-Education
+Education History
 ---------------------
 Motilal Nehru National Institute Of Technology
 Btech, Computer Science & Engineering · (July 2006 - May 2010)
