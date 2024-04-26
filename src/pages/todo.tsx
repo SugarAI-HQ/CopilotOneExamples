@@ -39,8 +39,6 @@ let copilotConfig: CopilotConfigType = {
     defaultPromptVariables: {
       "#AGENT_NAME": "Tudy",
     },
-    welcomeMessage:
-      "Hello, I am Tudy. I am here to help you use this todo App. What would you like to do?",
     successResponse: "Task Done",
     failureResponse: "I am not able to do this",
   },
@@ -49,6 +47,8 @@ let copilotConfig: CopilotConfigType = {
     theme: { primaryColor: "#3b83f6" },
     keyboardButton: {},
     toolTip: {
+      welcomeMessage: "Hi, I am John. How may I help you today?",
+      delay: 1,
       disabled: false,
     },
     voiceButton: {},
@@ -176,10 +176,13 @@ const TodoApp = () => {
     setIsSettingsOpen(!isSettingsOpen);
   };
 
-  const manageSettings = (settingName: string) => {
-    setIsSettingsOpen(true);
-    setHighlightedSetting(settingName);
-    if (settingName === "dark_mode") {
+  const manageSettings = (intent: string, settingName: string) => {
+    if (intent == "find") {
+      setIsSettingsOpen(true);
+      setHighlightedSetting(settingName);
+    }
+
+    if (intent == "change" && settingName === "dark_mode") {
       const currentTheme = theme === "system" ? systemTheme : theme;
       setTheme(currentTheme === "dark" ? "light" : "dark");
     }
@@ -191,6 +194,13 @@ const TodoApp = () => {
       name: "manageSettings",
       description: "Manage Settings for todo App ",
       parameters: [
+        {
+          name: "intent",
+          type: "string",
+          enum: ["find", "change"],
+          description: "Name of the setting",
+          required: true,
+        },
         {
           name: "settingName",
           type: "string",
@@ -211,7 +221,7 @@ const TodoApp = () => {
 
   return (
     <div className="container mx-auto p-8">
-      <ThemeSwitcher />
+      {/* <ThemeSwitcher /> */}
       <SettingsPopup
         isOpen={isSettingsOpen}
         onClose={handleSettingsToggle}

@@ -3,3 +3,7 @@ node_modules
 
 .yalc/
 yalc.lock
+
+videos/
+
+.DS_Store
