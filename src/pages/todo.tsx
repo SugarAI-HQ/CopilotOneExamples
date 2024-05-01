@@ -421,7 +421,7 @@ const Todo: NextPage = () => {
   }, []);
 
   return (
-    <CopilotProvider config={config as CopilotConfigType}>
+    <CopilotProvider config={config}>
       <TodoApp />
     </CopilotProvider>
   );
