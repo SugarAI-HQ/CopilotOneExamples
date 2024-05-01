@@ -58,7 +58,8 @@ let copilotConfig: CopilotConfigType = {
 const TodoApp = () => {
   const { useStateEmbedding, registerAction, unregisterAction } = useCopilot();
 
-  const [todos, setTodos] = useStateEmbedding([], "todoApp", "todos");
+  const scope = { scope1: "todoApp", scope2: "todos" };
+  const [todos, setTodos] = useStateEmbedding([], { ...scope });
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [highlightedSetting, setHighlightedSetting] = useState("");
   const [input, setInput] = useState("");
