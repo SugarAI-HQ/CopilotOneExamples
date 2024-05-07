@@ -24,14 +24,14 @@ enum recurringType {
   yearly,
 }
 
-const copilotPackage = "pulkit.ag02/recipiess/recipie/0.0.1";
+const copilotPackage = "sugar/copilotexample/todoexample/0.0.1";
 
 // @ts-ignore
 let copilotConfig: CopilotConfigType = {
-  copilotId: "283dfffe-32b1-41b8-8eba-5cc8df06d4ab",
+  copilotId: "da82abb5-cf74-448b-b94d-7e17245cc5d9",
   server: {
-    endpoint: "http://localhost:3000/api",
-    token: "pk-ZSl1A2XLH8AGY5JqkLDDX75BwZmKR7wCYL22Rcr8vVURvYVZ",
+    endpoint: "https://play.sugarcaneai.dev/api",
+    token: "pk-m0j6E8CfMkedk0orAk0gXyALpOZULs3rSiYulaPFXd2rPlin",
   },
 
   ai: {
