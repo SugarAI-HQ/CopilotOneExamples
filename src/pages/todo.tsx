@@ -24,7 +24,7 @@ enum recurringType {
   yearly,
 }
 
-const copilotPackage = "sugar/copilotexample/todoexample/0.0.1";
+const copilotPackage = "sugar/copilotexample/todoexample/0.0.2";
 
 // @ts-ignore
 let copilotConfig: CopilotConfigType = {
