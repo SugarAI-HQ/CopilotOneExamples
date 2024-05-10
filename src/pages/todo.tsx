@@ -4,6 +4,7 @@ import "../app/globals.css";
 import React, { useEffect, useState } from "react";
 import { MdAdd, MdDelete } from "react-icons/md";
 import { FiSettings } from "react-icons/fi";
+import { useSearchParams } from "next/navigation";
 
 import {
   useCopilot,
@@ -24,7 +25,23 @@ enum recurringType {
   yearly,
 }
 
+let language = "en-US";
+if (typeof window !== "undefined") {
+  const urlParams = new URLSearchParams(window.location.search);
+  language = urlParams?.get("lang") || language;
+}
+
 const copilotPackage = "sugar/copilotexample/todoexample/0.0.2";
+
+const setLanguage = (language: string) => {
+  if (language === "hi-IN") {
+    return { lang: "hi-IN", voice: "Google हिन्दी" };
+  } else if (language === "en-IN") {
+    return { lang: "en-IN", voice: "Rishi" };
+  } else {
+    return { lang: "en-US", voice: "Nicky" };
+  }
+};
 
 // @ts-ignore
 let copilotConfig: CopilotConfigType = {
@@ -41,6 +58,8 @@ let copilotConfig: CopilotConfigType = {
     },
     successResponse: "Task Done",
     failureResponse: "I am not able to do this",
+    voice: setLanguage(language).voice,
+    lang: setLanguage(language).lang,
   },
   style: {
     container: { position: "bottom-center" },
@@ -65,6 +84,9 @@ const TodoApp = () => {
   const [input, setInput] = useState("");
   const [filter, setFilter] = useState<FilterType>("all");
   const { systemTheme, theme, setTheme } = useTheme();
+  const searchParams = useSearchParams();
+
+  // console.log("lang", lang);
 
   const addTodo = (task: string) => {
     // @ts-ignore
@@ -412,6 +434,9 @@ const Todo: NextPage = () => {
   const [config, setConfig] = useState(copilotConfig);
 
   useEffect(() => {
+    if (window.location.search.split("?")[1]?.includes("lang")) {
+      return;
+    }
     const encodedData = window.location.search.split("=")[1];
     if (typeof encodedData !== "undefined" && encodedData) {
       const previewConfig = JSON.parse(atob(encodedData));

@@ -17,14 +17,41 @@ const Home = () => {
           <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-10 lg:max-w-none lg:grid-cols-2 lg:gap-y-16">
             <a
               className="max-w-sm rounded overflow-hidden shadow-lg"
-              href="/todo"
+              href="/todo?lang=en-US"
             >
               <div className="px-6 py-4">
-                <div className="font-bold text-xl mb-2">Todo Example</div>
+                <div className="font-bold text-xl mb-2">
+                  Todo Example in <span className="text-indigo-600">en-US</span>
+                </div>
                 <p className="text-gray-700 text-base">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Voluptatibus quia, nulla! Maiores et perferendis eaque,
-                  exercitationem praesentium nihil.
+                  Siri like Native AI Assistants to your App in English Language
+                </p>
+              </div>
+            </a>
+            <a
+              className="max-w-sm rounded overflow-hidden shadow-lg"
+              href="/todo?lang=hi-IN"
+            >
+              <div className="px-6 py-4">
+                <div className="font-bold text-xl mb-2">
+                  Todo Example in <span className="text-indigo-600">hi-IN</span>
+                </div>
+                <p className="text-gray-700 text-base">
+                  Siri like Native AI Assistants to your App In Hindi Language
+                </p>
+              </div>
+            </a>
+
+            <a
+              className="max-w-sm rounded overflow-hidden shadow-lg"
+              href="/todo?lang=en-IN"
+            >
+              <div className="px-6 py-4">
+                <div className="font-bold text-xl mb-2">
+                  Todo Example in <span className="text-indigo-600">en-IN</span>
+                </div>
+                <p className="text-gray-700 text-base">
+                  Siri like Native AI Assistants to your App in English Language
                 </p>
               </div>
             </a>
