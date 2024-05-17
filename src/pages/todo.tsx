@@ -31,7 +31,7 @@ if (typeof window !== "undefined") {
   language = urlParams?.get("lang") || language;
 }
 
-const copilotPackage = "sugar/copilotexample/todoexample/0.0.2";
+const copilotPackage = "sugar/copilotexample/todoexample/0.0.3";
 
 const setLanguage = (language: string) => {
   if (language === "hi-IN") {
