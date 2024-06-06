@@ -35,7 +35,6 @@ let copilotConfig: CopilotConfigType = {
   style: {
     container: { position: "bottom-center" },
     theme: { primaryColor: "#3b83f6" },
-    keyboardButton: {},
     toolTip: {
       welcomeMessage: "Hi, I am John. How may I help you today?",
       delay: 1,
