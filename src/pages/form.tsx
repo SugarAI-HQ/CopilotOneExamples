@@ -1,15 +1,18 @@
 import { resume } from "@/helpers/data";
-import {
-  useCopilot,
-  CopilotConfigType,
-  CopilotProvider,
-  VoiceAssistant,
-} from "@sugar-ai/copilot-one-js";
+import { useCopilot, CopilotConfigType, CopilotProvider } from "@sugar-ai/core";
+import { VoiceAssistant } from "@sugar-ai/copilot-one-js";
 import { NextPage } from "next";
 import React, { useEffect, useState } from "react";
 import { MdAdd } from "react-icons/md";
+import { setLanguage } from "./todo";
 
-const copilotPackage = "sugar/copilotexample/file-to-action/0.0.2";
+const copilotPackage = "sugar/copilotexample/file-to-action/0.0.3";
+
+let language = "en-US";
+if (typeof window !== "undefined") {
+  const urlParams = new URLSearchParams(window.location.search);
+  language = urlParams?.get("lang") || language;
+}
 
 // @ts-ignore
 let copilotConfig: CopilotConfigType = {
@@ -21,12 +24,24 @@ let copilotConfig: CopilotConfigType = {
 
   ai: {
     defaultPromptTemplate: copilotPackage,
-    // defaultPromptVariables: {
-    // },
-    welcomeMessage:
-      "Hello, I am Foundy. I am here to help you use filling Founder Profile?",
+    defaultPromptVariables: {
+      "#AGENT_NAME": "Tudy",
+    },
     successResponse: "Task Done",
     failureResponse: "I am not able to do this",
+    voice: setLanguage(language).voice,
+    lang: setLanguage(language).lang,
+  },
+  style: {
+    container: { position: "bottom-center" },
+    theme: { primaryColor: "#3b83f6" },
+    keyboardButton: {},
+    toolTip: {
+      welcomeMessage: "Hi, I am John. How may I help you today?",
+      delay: 1,
+      disabled: false,
+    },
+    voiceButton: {},
   },
 };
 

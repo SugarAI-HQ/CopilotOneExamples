@@ -30,7 +30,7 @@ if (typeof window !== "undefined") {
 
 const copilotPackage = "sugar/copilotexample/todoexample/0.0.3";
 
-const setLanguage = (language: string) => {
+export const setLanguage = (language: string) => {
   if (language === "hi-IN") {
     return { lang: "hi-IN", voice: "Google हिन्दी" };
   } else if (language === "en-IN") {

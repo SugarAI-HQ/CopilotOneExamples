@@ -55,6 +55,19 @@ const Home = () => {
                 </p>
               </div>
             </a>
+            <a
+              className="max-w-sm rounded overflow-hidden shadow-lg"
+              href="/vanilla-js.html"
+            >
+              <div className="px-6 py-4">
+                <div className="font-bold text-xl mb-2">
+                  Vanilla JS <span className="text-indigo-600">hi-IN</span>
+                </div>
+                <p className="text-gray-700 text-base">
+                  Siri like Native AI Assistants to your App in English Language
+                </p>
+              </div>
+            </a>
           </dl>
         </div>
       </div>
