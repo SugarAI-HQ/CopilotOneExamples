@@ -6,15 +6,12 @@ import { MdAdd, MdDelete } from "react-icons/md";
 import { FiSettings } from "react-icons/fi";
 import { useSearchParams } from "next/navigation";
 
-import {
-  useCopilot,
-  CopilotConfigType,
-  CopilotProvider,
-  VoiceAssistant,
-} from "@sugar-ai/copilot-one-js";
+import { useCopilot, CopilotConfigType, CopilotProvider } from "@sugar-ai/core";
+
 import { FilterType, SettingsType, TodoSchemaType } from "../schema/todoSchema";
 import ThemeSwitcher from "@/ThemeSwitcher";
 import { useTheme } from "next-themes";
+import { VoiceAssistant } from "@sugar-ai/copilot-one-js";
 
 enum recurringType {
   none,
