@@ -6,7 +6,11 @@ import { MdAdd, MdDelete } from "react-icons/md";
 import { FiSettings } from "react-icons/fi";
 import { useSearchParams } from "next/navigation";
 
-import { useCopilot, CopilotConfigType, CopilotProvider } from "@sugar-ai/core";
+import {
+  useCopilot,
+  type CopilotConfigType,
+  CopilotProvider,
+} from "@sugar-ai/core";
 
 import { FilterType, SettingsType, TodoSchemaType } from "../schema/todoSchema";
 import ThemeSwitcher from "@/ThemeSwitcher";
@@ -58,14 +62,16 @@ let copilotConfig: CopilotConfigType = {
     voice: setLanguage(language).voice,
     lang: setLanguage(language).lang,
   },
+  nudges: {
+    welcome: {
+      text: "Hi, I am John. How may I help you today?",
+      delay: 1,
+      enabled: true,
+    },
+  },
   style: {
     container: { position: "bottom-center" },
     theme: { primaryColor: "#3b83f6" },
-    toolTip: {
-      welcomeMessage: "Hi, I am John. How may I help you today?",
-      delay: 1,
-      disabled: false,
-    },
     voiceButton: {},
   },
 };
